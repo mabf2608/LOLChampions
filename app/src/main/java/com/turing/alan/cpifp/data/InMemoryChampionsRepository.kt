@@ -46,6 +46,15 @@ class InMemoryChampionsRepository private constructor(): ChampionsRepository {
                 "The Swift Scout",
                 "Undeterred by even the most dangerous and threatening of missions, Teemo scouts the world with boundless enthusiasm and a smile on his face.",
                 "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Teemo_0.jpg"
+            ),
+            Champion(
+                7,
+                "Ornn",
+                "The Fire below the Mountain",
+                "Ornn’s name was once spoken throughout the lands that would one day become known as the Freljord. It was widely held that he was the firstborn of the old demi-gods, who had shaped the land itself, and brought forth the first snows.",
+                "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ornn_0.jpg"
+
+
             )
         )
     }
