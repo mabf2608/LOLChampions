@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
-    />
+        />
     <TextView
         android:id="@+id/champTitle"
         android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
-    />
+        />
     <TextView
         android:id="@+id/champLore"
         android:layout_width="wrap_content"
@@ -55,5 +55,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
     />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
