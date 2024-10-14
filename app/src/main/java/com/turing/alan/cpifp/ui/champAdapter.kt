@@ -10,17 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.turing.alan.cpifp.R
 import com.turing.alan.cpifp.data.Champion
 
-class ChampAdapter (val champions:List<Champion>, private val listener: (Champion) -> Unit): RecyclerView.Adapter<ChampAdapter.ChampionViewHolder>(){
+class ChampAdapter (val champions:List<Champion>): RecyclerView.Adapter<ChampAdapter.ChampionViewHolder>(){
 
 
     class ChampionViewHolder(view:View):RecyclerView.ViewHolder(view){
         val name:TextView=view.findViewById(R.id.champName)
         val title:TextView=view.findViewById(R.id.champTitle)
+        val lore:TextView=view.findViewById(R.id.champLore)
         val image:ImageView=view.findViewById(R.id.champImage)
     }
 
     override fun onCreateViewHolder(parent:ViewGroup, viewType:Int):ChampionViewHolder{
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_champ_list,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.champion,parent,false)
         return ChampionViewHolder(view)
     }
 
@@ -28,6 +29,7 @@ class ChampAdapter (val champions:List<Champion>, private val listener: (Champio
         val champ = champions[position]
         holder.name.text = champ.name
         holder.title.text = champ.title
+        holder.lore.text = champ.lore
         holder.image.load(champ.imageUrl)
     }
     override fun getItemCount(): Int {
