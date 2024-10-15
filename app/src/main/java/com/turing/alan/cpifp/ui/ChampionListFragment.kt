@@ -1,4 +1,3 @@
-// ChampionListFragment.kt
 package com.turing.alan.cpifp.ui
 
 import android.os.Bundle
@@ -7,33 +6,48 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.turing.alan.cpifp.R
-import com.turing.alan.cpifp.data.InMemoryChampionsRepository
+import com.turing.alan.cpifp.data.ChampionsRepository
+import com.turing.alan.cpifp.databinding.FragmentChampionListBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import com.turing.alan.cpifp.data.Champion
 
+@AndroidEntryPoint
 class ChampionListFragment : Fragment() {
+
+    @Inject
+    lateinit var championsRepository: ChampionsRepository // Inyectamos el repositorio
+
+    private var _binding: FragmentChampionListBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_champion_list, container, false)
+        _binding = FragmentChampionListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewChamps)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = ChampAdapter(InMemoryChampionsRepository.getInstance().getChampions()) {
-            navigateToDetail(it)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val champions = championsRepository.getChampions() // Obtener lista de campeones
+        val adapter = ChampAdapter(champions) { champion ->
+            // Manejar clic en un campeón
+            navigateToDetail(champion)
         }
 
-        return view
+        binding.recyclerViewChamps.layoutManager = LinearLayoutManager(context)
+        binding.recyclerViewChamps.adapter = adapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun navigateToDetail(champion: Champion) {
-        val fragment = ChampionDetailFragment.newInstance(champion.id)
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .addToBackStack(null)
-            .commit()
+        // Implementar la navegación
     }
 }

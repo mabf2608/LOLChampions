@@ -1,11 +1,11 @@
-// MainActivity.kt
-
 package com.turing.alan.cpifp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.turing.alan.cpifp.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
